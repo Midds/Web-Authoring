@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+	<!-- Viewport sets an initial zoom point on mobile devices, so content will not be zoomed out when you load up the page. -->
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Sandwich Express</title>
+    <!-- link to style sheet -->
+	<link rel="stylesheet" href="../CSS/sandwich%20style.css" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="../Images/shortcut%20icon%202.png"/>
+	<!--link to js library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+	<!-- Custom script for fixed navigation bar -->
+	<script type="text/javascript" src="../Java%20Script/nav%20bar.js"></script>
+	<!-- Script for rotating images -->
+	<script type="text/javascript" src="../Java%20Script/rotating%20images.js"></script>
+	<!-- Script for he search bar -->
+	<script src="../Java%20Script/site%20search.js"></script>
+
+
+	<!-- link to custom javascript-->
+	<script type="text/javascript" src="../Java%20Script/errorhandling%20events.js"></script>
+	
+	
+
+
+  </head>
+  
+  <body>
+		<header id="header"> 
+			<div id="siteHeaderContainer">
+				<div id="logo">
+					<!--Conditional statement to replace the svg logo with a png for older versions of IE -->
+					<!--[if lte IE 8]><img src="../Images/raster%20png%20logo%20white.png" alt="Sandwich Express Logo"/><![endif]-->
+					<!--[if gt IE 8]><img src="../Images/vector%20logo%20white.svg" alt="Sandwich Express Logo"/><![endif]-->
+					<!--[if !IE]> --><img src="../Images/vector%20logo%20white.svg" alt="Sandwich Express Logo" id="mainLogo" width="300" height="110"/><!-- <![endif]-->
+				</div>
+				
+				<div id="searchbar">
+					<form id="searchForm" method="post">
+						<fieldset>
+							<input id="s" type="text" />
+							<input type="submit" value="Submit" id="submitButton" />
+			   
+							<div id="searchInContainer">
+								<input type="radio" name="check" value="site" id="searchSite" checked />
+								<label for="searchSite" id="siteNameLabel">Search</label>
+								
+								<input type="radio" name="check" value="web" id="searchWeb" />
+								<label for="searchWeb">Search The Web</label>
+							</div>
+										
+							<ul class="icons">
+								<li class="web" title="Web Search" data-searchType="web">Web</li>
+								<li class="images" title="Image Search" data-searchType="images">Images</li>
+								<li class="news" title="News Search" data-searchType="news">News</li>
+								<li class="videos" title="Video Search" data-searchType="video">Videos</li>
+							</ul>
+						</fieldset>
+					</form>   
+				</div>
+				
+				<!--[if lte IE 8]><div id="socialMedia" style="display:none;"><!- <![endif]-->
+				<!--[if !IE]> --><div id="socialMedia"><!-- <![endif]-->
+				  <ul>
+					<li><a href="https://www.facebook.com/pages/Sandwich-Express/1611789505709481?ref=bookmarks"> <img src="../Images/facebooklogo.png" alt="Facebook Logo" width="35" height="35"></a></li>
+					<li><a href="https://twitter.com/intent/follow?screen_name=middslincoln"> <img src="../Images/twitterlogo.png" alt="Twitter Logo" width="35" height="35"></a></li>
+				  </ul>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<!-- Main page navigation -->
+					<li><a href="../index.html">Home</a></li>
+					<li><a href="#">Menu</a>
+						<ul class="submenu">
+							<li><a href="Menu.html">Main menu</a></li>
+							<li><a href="veg-menu.html">Vegetarian menu</a></li>
+						</ul>
+					</li>
+					<li class="currentLink"><a href="Order.html">Order Now</a></li>
+					<li><a href="Contact.html">Contact Us</a></li>
+				</ul>
+			</nav>
+		</header>
+		
+	<div id="resultsDiv"></div>
+	
+	<!-- section "content" will be used on all pages, "order" is just for this page -->
+    <section id="content"> 
+		<section id ="order">
+			<h1>We guarantee delivery within 45 minutes!</h1>
+			<h2>Order Now!</h2>
+			
+			<form action="Order%20Results.html" method="post" id="sandwichOrder">	
+				<div id="customerInfo">
+					<fieldset>
+						<legend>Your Information</legend>
+						<p>
+							<label for="customerName">Full Name:<br></label>
+							<input id="customerName" name="customerName" type="text" class="stored" maxLength="25" placeholder="First and last name">
+						</p>
+						<p>
+							<label for="addressOne">Address Line 1:<br></label>
+							<input id="addressOne" name="addressOne" type="text" class="stored" maxLength="30" placeholder="House name/number and street name">
+						</p>
+						<p>
+							<label for="addressTwo">Address Line 2 <em>(optional)</em>:</label><br>
+							<input id="addressTwo" name="addressTwo" type="text" class="stored" maxLength="50" placeholder="Apartment, suite, building, floor, etc.">
+						</p>
+						<p>
+							<label for="city">City:<br></label>
+							<input id="city" name="city" type="text" class="stored" maxLength="15" placeholder="City or town">
+						</p>
+						<p>
+							<label for="postcode">Postcode:<br></label>
+							<input id="postcode" name="postcode" type="text" class="stored" maxLength="10" placeholder="xxx (x)xxx">
+						</p>
+						<p>
+							<label for="phone">Telephone Number:<br></label>
+							<input id="phone" name="phone" type="tel" class="stored" placeholder="(xxxxx) xxxxxx">
+						</p>
+					</fieldset>
+				</div>
+				<div id="orderInfo">
+					<fieldset>
+						<legend>Select your order</legend>
+							<p>
+								<label>Main:<br></label>
+								<select name="optionsMain" id="optionsMain" class="stored">
+									<option value="" disabled selected>Select your sandwich...</option>
+									<option value="Ham & Cheese">Ham & Cheese</option>
+									<option value="B.L.T">B.L.T</option>
+									<option value="BBQ Chicken">BBQ Chicken</option>
+									<option value="Beef Deluxe">Beef Deluxe</option>
+									<option value="Meat Feast">Meat Feast</option>
+									<option value="Turkey Sub">Turkey Sub</option>
+									<option value="Bite of Italia">Bite of Italia</option>
+									<option value="Taste of Espanol">Taste of Espanol</option>
+									<option value="Full English">Full English</option>
+									<option value="Bite of Brasilia">Bite of Brasilia</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Veggie Patty">Veggie Patty</option>
+									<option value="Cheese Toastie">Cheese Toastie</option>
+									<option value="Tuna Melt">Tuna Melt</option>
+									<option value="Egg Mayo">Egg Mayo</option>
+									<option value="Veggie Wrap">Veggie Wrap</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Turkey Croissant">Turkey Croissant</option>
+									<option value="Christmas Sandwich">Christmas Sandwich</option>
+									<option value="Reindeer Sandwich">Reindeer Sandwich</option>
+									<option value="Xmas Dinner Sub">Xmas Dinner Sub</option>
+									<option value="Mince Pie Sandwich">Mince Pie Sandwich</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsMain2" id="optionsMain2" class="stored">
+									<option value="" disabled selected>Select your sandwich...</option>
+									<option value="">No Sandwich</option>
+									<option value="Ham & Cheese">Ham & Cheese</option>
+									<option value="B.L.T">B.L.T</option>
+									<option value="BBQ Chicken">BBQ Chicken</option>
+									<option value="Beef Deluxe">Beef Deluxe</option>
+									<option value="Meat Feast">Meat Feast</option>
+									<option value="Turkey Sub">Turkey Sub</option>
+									<option value="Bite of Italia">Bite of Italia</option>
+									<option value="Taste of Espanol">Taste of Espanol</option>
+									<option value="Full English">Full English</option>
+									<option value="Bite of Brasilia">Bite of Brasilia</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Veggie Patty">Veggie Patty</option>
+									<option value="Cheese Toastie">Cheese Toastie</option>
+									<option value="Tuna Melt">Tuna Melt</option>
+									<option value="Egg Mayo">Egg Mayo</option>
+									<option value="Veggie Wrap">Veggie Wrap</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Turkey Croissant">Turkey Croissant</option>
+									<option value="Christmas Sandwich">Christmas Sandwich</option>
+									<option value="Reindeer Sandwich">Reindeer Sandwich</option>
+									<option value="Xmas Dinner Sub">Xmas Dinner Sub</option>
+									<option value="Mince Pie Sandwich">Mince Pie Sandwich</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsMain3" id="optionsMain3" class="stored">
+									<option value="" disabled selected>Select your sandwich...</option>
+									<option value="">No Sandwich</option>
+									<option value="Ham & Cheese">Ham & Cheese</option>
+									<option value="B.L.T">B.L.T</option>
+									<option value="BBQ Chicken">BBQ Chicken</option>
+									<option value="Beef Deluxe">Beef Deluxe</option>
+									<option value="Meat Feast">Meat Feast</option>
+									<option value="Turkey Sub">Turkey Sub</option>
+									<option value="Bite of Italia">Bite of Italia</option>
+									<option value="Taste of Espanol">Taste of Espanol</option>
+									<option value="Full English">Full English</option>
+									<option value="Bite of Brasilia">Bite of Brasilia</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Veggie Patty">Veggie Patty</option>
+									<option value="Cheese Toastie">Cheese Toastie</option>
+									<option value="Tuna Melt">Tuna Melt</option>
+									<option value="Egg Mayo">Egg Mayo</option>
+									<option value="Veggie Wrap">Veggie Wrap</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Turkey Croissant">Turkey Croissant</option>
+									<option value="Christmas Sandwich">Christmas Sandwich</option>
+									<option value="Reindeer Sandwich">Reindeer Sandwich</option>
+									<option value="Xmas Dinner Sub">Xmas Dinner Sub</option>
+									<option value="Mince Pie Sandwich">Mince Pie Sandwich</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsMain4" id="optionsMain4" class="stored">
+									<option value="" disabled selected>Select your sandwich...</option>
+									<option value="">No Sandwich</option>
+									<option value="Ham & Cheese">Ham & Cheese</option>
+									<option value="B.L.T">B.L.T</option>
+									<option value="BBQ Chicken">BBQ Chicken</option>
+									<option value="Beef Deluxe">Beef Deluxe</option>
+									<option value="Meat Feast">Meat Feast</option>
+									<option value="Turkey Sub">Turkey Sub</option>
+									<option value="Bite of Italia">Bite of Italia</option>
+									<option value="Taste of Espanol">Taste of Espanol</option>
+									<option value="Full English">Full English</option>
+									<option value="Bite of Brasilia">Bite of Brasilia</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Veggie Patty">Veggie Patty</option>
+									<option value="Cheese Toastie">Cheese Toastie</option>
+									<option value="Tuna Melt">Tuna Melt</option>
+									<option value="Egg Mayo">Egg Mayo</option>
+									<option value="Veggie Wrap">Veggie Wrap</option>
+									<option value="" disabled >- - - - - - - - - - - - - - - - - - - - -</option>
+									<option value="Turkey Croissant">Turkey Croissant</option>
+									<option value="Christmas Sandwich">Christmas Sandwich</option>
+									<option value="Reindeer Sandwich">Reindeer Sandwich</option>
+									<option value="Xmas Dinner Sub">Xmas Dinner Sub</option>
+									<option value="Mince Pie Sandwich">Mince Pie Sandwich</option>
+								</select>
+							</p>
+							<p>
+								<label>Drink:<br></label>
+								<select name="optionsDrink" id="optionsDrink" class="stored">
+									<option value="" disabled selected >Select your drink...</option>
+									<option value="No Drink">No Drink</option>
+									<option value="Mineral Water">Mineral Water</option>
+									<option value="Coca-cola">Coca-cola</option>
+									<option value="Pepsi">Pepsi</option>
+									<option value="Fanta">Fanta</option>
+									<option value="Dr Pepper">Dr Pepper</option>
+									<option value="Orange Juice">Orange Juice</option>
+									<option value="Apple Juice">Apple Juice</option>
+									<option value="Banana Milkshake">Banana Milkshake</option>
+									<option value="Strawberry Milkshake">Strawberry Milkshake</option>
+									<option value="Chocolate Milkshake">Chocolate Milkshake</option>
+									<option value="Tea">Tea</option>
+									<option value="Coffee">Coffee</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsDrink2" id="optionsDrink2" class="stored">
+									<option value="" disabled selected >Select your drink...</option>
+									<option value="">No Drink</option>
+									<option value="Mineral Water">Mineral Water</option>
+									<option value="Coca-cola">Coca-cola</option>
+									<option value="Pepsi">Pepsi</option>
+									<option value="Fanta">Fanta</option>
+									<option value="Dr Pepper">Dr Pepper</option>
+									<option value="Orange Juice">Orange Juice</option>
+									<option value="Apple Juice">Apple Juice</option>
+									<option value="Banana Milkshake">Banana Milkshake</option>
+									<option value="Strawberry Milkshake">Strawberry Milkshake</option>
+									<option value="Chocolate Milkshake">Chocolate Milkshake</option>
+									<option value="Tea">Tea</option>
+									<option value="Coffee">Coffee</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsDrink3" id="optionsDrink3" class="stored">
+									<option value="" disabled selected >Select your drink...</option>
+									<option value="">No Drink</option>
+									<option value="Mineral Water">Mineral Water</option>
+									<option value="Coca-cola">Coca-cola</option>
+									<option value="Pepsi">Pepsi</option>
+									<option value="Fanta">Fanta</option>
+									<option value="Dr Pepper">Dr Pepper</option>
+									<option value="Orange Juice">Orange Juice</option>
+									<option value="Apple Juice">Apple Juice</option>
+									<option value="Banana Milkshake">Banana Milkshake</option>
+									<option value="Strawberry Milkshake">Strawberry Milkshake</option>
+									<option value="Chocolate Milkshake">Chocolate Milkshake</option>
+									<option value="Tea">Tea</option>
+									<option value="Coffee">Coffee</option>
+								</select>
+								
+								<!--This select list will only be displayed if the previous list has been filled -->
+								<select name="optionsDrink4" id="optionsDrink4" class="stored">
+									<option value="" disabled selected >Select your drink...</option>
+									<option value="">No Drink</option>
+									<option value="Mineral Water">Mineral Water</option>
+									<option value="Coca-cola">Coca-cola</option>
+									<option value="Pepsi">Pepsi</option>
+									<option value="Fanta">Fanta</option>
+									<option value="Dr Pepper">Dr Pepper</option>
+									<option value="Orange Juice">Orange Juice</option>
+									<option value="Apple Juice">Apple Juice</option>
+									<option value="Banana Milkshake">Banana Milkshake</option>
+									<option value="Strawberry Milkshake">Strawberry Milkshake</option>
+									<option value="Chocolate Milkshake">Chocolate Milkshake</option>
+									<option value="Tea">Tea</option>
+									<option value="Coffee">Coffee</option>
+								</select>
+							</p>
+					</fieldset>
+				</div>
+				<div id="otherOptions">
+					<fieldset>
+						<legend>Other requests</legend>
+						<p>Make a request here and our staff will try their best to fulfil it.</p>
+						<p>
+							<label for="requests">Requests:<br></label>
+							<textarea id ="requests" name="requests" maxLength="150" class="stored" placeholder="Anything you can think of."></textarea>
+						</p>
+						<p>Would you like to collect your order yourself or have it delivered? </p>
+						<p>
+							<input id="selfCollection" type="radio" name="deliveryChoice" value="selfCollection" class="stored">
+							<label for ="selfCollection">Self-Collection</label>
+						</p>
+						<p>
+							<input id="delivery" type="radio" name="deliveryChoice" value="delivery" class="stored">
+							<label for ="delivery">Home Delivery</label>
+						</p>
+					</fieldset>
+				</div>
+				<div class="button" id="saveForm">
+					<button onclick="myFunction()" type="submit">Submit Order</button>
+				</div>
+			</form>
+      </section>
+	 
+	<!-- Script to make more option lists appear when the user selects items, putting in a separate JS file would increase load times due to how small the script is -->
+	<script type="text/javascript">
+	// Monitors for change in optionsMain(the first select list), if there is a change (ie the user selects an option) then it will display #optionsMain2)
+	$('#optionsMain').change(function() {
+		$("#optionsMain2").css({ display: "inline" });
+		});
+	$('#optionsMain2').change(function() {
+			$("#optionsMain3").css({ display: "inline" });
+			});
+	$('#optionsMain3').change(function() {
+			$("#optionsMain4").css({ display: "inline" });
+			});
+	$('#optionsDrink').change(function() {
+			$("#optionsDrink2").css({ display: "inline" });
+			});
+	$('#optionsDrink2').change(function() {
+			$("#optionsDrink3").css({ display: "inline" });
+			});
+	$('#optionsDrink3').change(function() {
+			$("#optionsDrink4").css({ display: "inline" });
+		});
+	</script>
+	
+	<!--Script for saving the radio buttons into local storage -->
+	<script type="text/javascript" src="../Java%20Script/radio%20type%20localstorage%20save.js"></script> 
+    </section><!--Closes "Content" section-->
+    <footer id="footer">
+      <p>&copy; James Middleton 2014</p>
+     </footer> 
+	<!-- Script ensures that if the user closes the window form inputs are saved in local storage so they don't have to retype them -->
+	<script type="text/javascript" src="../Java%20Script/form%20input%20storage.js"></script>
+  </body>
+</html>

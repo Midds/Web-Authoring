@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+	<!-- Viewport sets an initial zoom point on mobile devices, so content will not be zoomed out when you load up the page. -->
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Sandwich Express</title>
+    <!-- link to style sheet -->
+	<link rel="stylesheet" href="../CSS/sandwich%20style.css" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="../Images/shortcut%20icon%202.png"/>
+	<!--link to js library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+	<!-- Custom script for fixed navigation bar -->
+	<script type="text/javascript" src="../Java%20Script/nav%20bar.js"></script>
+	<!-- Script for he search bar -->
+	<script src="../Java%20Script/site%20search.js"></script>
+	<!-- link to custom javascript-->
+	<script type="text/javascript" src="../Java%20Script/errorhandling%20events.js"></script>
+	
+
+
+  </head>
+  
+  <body>
+		<header id="header"> 
+			<div id="siteHeaderContainer">
+				<div id="logo">
+					<!--Conditional statement to replace the svg logo with a png for older versions of IE -->
+					<!--[if lte IE 8]><img src="../Images/raster%20png%20logo%20white.png" alt="Sandwich Express Logo"/><![endif]-->
+					<!--[if gt IE 8]><img src="../Images/vector%20logo%20white.svg" alt="Sandwich Express Logo"/><![endif]-->
+					<!--[if !IE]> --><img src="../Images/vector%20logo%20white.svg" alt="Sandwich Express" id="mainLogo" width="300" height="110"/><!-- <![endif]-->
+				</div>
+				
+				<div id="searchbar">
+					<form id="searchForm" method="post">
+						<fieldset>
+							<input id="s" type="text" />
+							<input type="submit" value="Submit" id="submitButton" />
+			   
+							<div id="searchInContainer">
+								<input type="radio" name="check" value="site" id="searchSite" checked />
+								<label for="searchSite" id="siteNameLabel">Search</label>
+								
+								<input type="radio" name="check" value="web" id="searchWeb" />
+								<label for="searchWeb">Search The Web</label>
+							</div>
+										
+							<ul class="icons">
+								<li class="web" title="Web Search" data-searchType="web">Web</li>
+								<li class="images" title="Image Search" data-searchType="images">Images</li>
+								<li class="news" title="News Search" data-searchType="news">News</li>
+								<li class="videos" title="Video Search" data-searchType="video">Videos</li>
+							</ul>
+						</fieldset>
+					</form>   
+				</div>
+				
+				<!--[if lte IE 8]><div id="socialMedia" style="display:none;"><!- <![endif]-->
+				<!--[if !IE]> --><div id="socialMedia"><!-- <![endif]-->
+				  <ul>
+					<li><a href="https://www.facebook.com/pages/Sandwich-Express/1611789505709481?ref=bookmarks"> <img src="../Images/facebooklogo.png" alt="Facebook Logo" width="35" height="35"></a></li>
+					<li><a href="https://twitter.com/intent/follow?screen_name=middslincoln"> <img src="../Images/twitterlogo.png" alt="Twitter Logo" width="35" height="35"></a></li>
+				  </ul>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<!-- Main page navigation -->
+					<li><a href="../index.html">Home</a></li>
+					<li><a href="#">Menu</a>
+						<ul class="submenu">
+							<li><a href="Menu.html">Main menu</a></li>
+							<li><a href="veg-menu.html">Vegetarian menu</a></li>
+						</ul>
+					</li>
+					<li class="currentLink"><a href="Order.html">Order Now</a></li>
+					<li><a href="Contact.html">Contact Us</a></li>
+				</ul>
+			</nav>
+		</header>
+		
+	<div id="resultsDiv"></div>
+	
+    <section id="content"> 
+		<section id ="orderResults">
+			<div id="nameConfirmation">
+				<h2>Hello, </h2>
+				<div id="nameResult"></div>
+			</div>
+			
+			<div id="orderConfirmation">
+				<h2>Your order:</h2>
+				<div id="mainResults">
+					<h3>Main Orders</h3>
+					<!-- One div for each possible food selection, used in "showing order results.js -->
+					<div id="mainResult"></div>
+					<div id="mainResult2"></div>
+					<div id="mainResult3"></div>
+					<div id="mainResult4"></div>
+				</div>
+				<div id="drinkResults">
+					<h3>Drink Orders</h3>
+					<!-- One div for each possible drink selection, used in "showing order results.js -->
+					<div id="drinkResult"></div>
+					<div id="drinkResult2"></div>
+					<div id="drinkResult3"></div>
+					<div id="drinkResult4"></div>
+				</div>
+			</div>
+			
+			<div id="deliveryConfirmation">
+				<h2>Delivery Choice</h2>
+				<div id="deliveryResult"></div>
+			</div>
+			<div id="requestConfirmation">
+				<h2>Requests</h2>
+				<div id="requestResult"></div>
+			</div>
+			<form action="Order.html">
+				<input type="submit" value="Back to Order page" id="confirmOrder">
+			</form>
+			<form action="../index.html">
+				<input type="submit" value="Confirm" id="clearData">
+			</form>
+			
+			<!-- Script that fetches order results from local storage and displays them to the user -->
+			<script type="text/javascript" src="../Java%20Script/showing%20order%20results.js"></script>
+			
+			<!-- Script that clears localStorage on button click (the comfirm button)-->
+			<script>
+			$("#clearData")
+			.click(function(e) {
+				
+				localStorage.clear();
+				
+			});
+			</script>
+		</section>
+    </section>
+	
+    <footer id="footer">
+      <p>&copy; James Middleton 2014</p>
+     </footer> 
+  </body>
+</html>
